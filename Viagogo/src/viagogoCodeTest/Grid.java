@@ -38,10 +38,16 @@ public class Grid {
 	//A line of the string is in the format "Event x - $xx.xx, Distance x"
 	public String getNearestEvents(int x_coor, int y_coor) {
 		
+		
+		
+		String returnString = "Closest events to (" + x_coor + "," + y_coor + "): \n";
+		
 		x_coor = transformCoordinate(x_coor);
 		y_coor = transformCoordinate(y_coor);
 		
-		String returnString = "";
+		if (!validateCoordinates(x_coor, y_coor)) {
+			return "Error: input out of bounds";
+		}
 		int eventCount =0;
 		for (int i=0; i< Values.GRID_SIZE.value && eventCount<=Values.NUMBER_OF_EVENTS.value; i++) {
 			ArrayList<Event> events = exploreDistance(i, x_coor, y_coor);
@@ -51,8 +57,24 @@ public class Grid {
 			}
 		}
 		
+		if (eventCount ==0) {
+			returnString = "By chance, there are no events near you. Sorry!";
+		}
+		
 		return returnString;
 		
+	}
+	
+	private boolean validateCoordinates(int x_coor, int y_coor) {
+		if (
+				x_coor <0 || 
+				x_coor >= Values.GRID_SIZE.value ||
+				y_coor <0 ||
+				y_coor >= Values.GRID_SIZE.value
+				) {
+			return false;
+		}
+		return true;
 	}
 	
 	private ArrayList<Event> exploreDistance(int distance, int x_coor, int y_coor) {
