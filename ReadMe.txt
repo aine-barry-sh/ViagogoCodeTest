@@ -1,6 +1,6 @@
 This repository includes the eclipse java project for the code test as issued by Viagogo and a runnable .jar file. 
 
-The raw code can be examined by directing to [address within]
+The raw code can be examined by directing to ViagogoCodeTest/Viagogo/src/viagogoCodeTest
 
 To run the code, run the following when in the same directory as the .jar file 
 java -jar Viagogo.jar 
